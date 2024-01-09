@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: debug
+spec:
+  containers:
+  - name: debug
+    image: btoll/debug:latest
+    stdin: true
+    tty: true
+    imagePullPolicy: IfNotPresent
+    resources:
+      limits:
+        cpu: 500m
+        memory: 100Mi
+  restartPolicy: Always
+

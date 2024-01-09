@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: theowlsnestfarm
+  labels:
+    app: theowlsnestfarm
+spec:
+  replicas: 6
+  selector:
+    matchLabels:
+      app: theowlsnestfarm
+  template:
+    metadata:
+      labels:
+        app: theowlsnestfarm
+    spec:
+      containers:
+        - name: theowlsnestfarm
+          image: btoll/owlsnestfarm:latest
+          ports:
+            - name: http-port
+              containerPort: 80
+

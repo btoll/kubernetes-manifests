@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: benjamintoll
+  labels:
+    app: benjamintoll
+spec:
+  replicas: 6
+  selector:
+    matchLabels:
+      app: benjamintoll
+  template:
+    metadata:
+      labels:
+        app: benjamintoll
+    spec:
+      containers:
+      - name: benjamintoll
+        image: btoll/benjamintoll.com:latest
+        ports:
+          - name: http
+            containerPort: 80
+          - name: https
+            containerPort: 443
+        resources:
+          requests:
+            cpu: 20m # 20 milliCPU / 0.02 CPU
+        livenessProbe:
+          httpGet:
+            path: /index.html
+            port: http
+          initialDelaySeconds: 5
+
